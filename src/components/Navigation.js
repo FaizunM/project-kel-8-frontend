@@ -1,7 +1,7 @@
 export default function Navigation() {
   return (
     <div className="w-full h-[64px] bg-white flex items-center shadow-sm px-2 fixed top-0 left-0">
-      <div className="w-auto h-auto font-bold">SMK Negeri 2 Salatiga</div>
+      <div className="w-auto h-auto font-semibold">SMK Negeri 2 Salatiga</div>
       <div className="w-auto h-auto ml-auto">
         <div className="w-8 h-8 rounded-full overflow-hidden">
           <img
@@ -11,7 +11,7 @@ export default function Navigation() {
           />
         </div>
       </div>
-      <div className="w-auto h-auto p-4 fixed top-4 right-4 bg-white shadow-default rounded-lg flex flex-col items-center">
+      <div className="w-auto h-auto p-4 fixed top-4 right-4 bg-white shadow-default rounded-lg flex-col items-center hidden">
         <div className="w-[128px] h-[128px] flex items-center justify-center">
           <div className="w-20 h-20 rounded-full overflow-hidden">
             <img

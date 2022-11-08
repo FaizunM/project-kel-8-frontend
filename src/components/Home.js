@@ -43,13 +43,13 @@ export default function Home() {
   }, [getData]);
 
   return (
-    <div className="w-screen h-screen bg-[#fcfcfc]">
+    <div className="w-full h-screen bg-[#ffffff]">
       <Navigation />
-      <div className="w-full h-auto">
-        <div className="my-8 mt-20 font-semibold text-2xl px-8">
+      <div className="w-full h-auto lg:px-64">
+        <div className="w-auto py-8 pt-24 font-semibold text-2xl px-8">
           Hasil nilai ujian tahun ajaran 2022/2023
         </div>
-        <div className="w-full h-auto p-4">
+        <div className="w-full lg:w-[300px] h-auto p-4">
           <form action="">
             <div className="flex">
               <input
@@ -65,24 +65,24 @@ export default function Home() {
             </div>
           </form>
         </div>
-        <div className="w-full h-auto overflow-x-scroll bg-white pb-16">
+        <div className="w-full lg:w-fit h-auto overflow-x-scroll bg-white pb-16 lg:shadow-default lg:rounded-lg">
           <div className="w-fit h-auto flex items-center font-medium border-b-[1px] border-[rgba(0,0,0,0.1)] px-4">
-            <div className="min-w-[96px] text-center h-auto p-4">Peringkat</div>
-            <div className="min-w-[48px] text-center h-auto p-4 mx-4"></div>
-            <div className="min-w-[164px] text-center h-auto p-4">
+            <div className="min-w-[96px] text-center h-auto py-4">Peringkat</div>
+            <div className="min-w-[48px] text-center h-auto py-4 mx-4"></div>
+            <div className="min-w-[164px] text-center h-auto py-4">
               Nama Lengkap
             </div>
-            <div className="min-w-[96px] text-center h-auto p-4">NISN</div>
-            <div className="min-w-[96px] text-center h-auto p-4">Kelas</div>
-            <div className="min-w-[128px] text-center h-auto p-4">
+            <div className="min-w-[96px] text-center h-auto py-4">NISN</div>
+            <div className="min-w-[96px] text-center h-auto py-4">Kelas</div>
+            <div className="min-w-[128px] lg:max-w-[128px] text-center h-auto py-4">
               Lulus/Tidak Lulus
             </div>
-            <div className="min-w-[72px] text-center h-auto p-4">Poin</div>
+            <div className="min-w-[72px] text-center h-auto py-4">Poin</div>
           </div>
-          <div className="w-full h-auto">
+          <div className="w-full h-auto text-sm">
             {data.map((d, index) => (
               <div
-                className="w-fit h-auto py-4 flex items-center font-medium text-[rgba(0,0,0,0.5)] px-4 hover:text-[rgba(0,0,0,0.75)] hover:bg-[rgba(0,0,0,0.01)]"
+                className="w-fit h-auto py-4 flex items-center font-medium text-[rgba(0,0,0,0.5)] px-4 hover:text-[rgba(0,0,0,0.75)] hover:shadow-default transition-all duration-150 ease-in-out"
                 key={d.id}
               >
                 <div className="min-w-[96px] text-center h-auto">
@@ -97,13 +97,13 @@ export default function Home() {
                     alt=""
                   />
                 </div>
-                <div className="min-w-[164px] text-center h-auto">
+                <div className="min-w-[164px] lg:max-w-[164px] text-center h-auto">
                   {d.fullname}
                 </div>
                 <div className="min-w-[96px] text-center h-auto">{d.nisn}</div>
                 <div className="min-w-[96px] text-center h-auto">{d.class}</div>
                 <div className="min-w-[128px] text-center h-auto">
-                  {d.status}
+                {d.status === "Lulus"? <div className="text-green-500">{d.status}</div> : <div className="text-red-500">{d.status}</div>}
                 </div>
                 <div className="min-w-[72px] text-center h-auto">{d.poin}</div>
               </div>
