@@ -45,8 +45,8 @@ export default function Home() {
   return (
     <div className="w-full h-screen bg-[#ffffff]">
       <Navigation />
-      <div className="w-full h-auto lg:px-64">
-        <div className="w-auto py-8 pt-24 font-semibold text-2xl px-8">
+      <div className="w-full h-auto lg:px-64 pb-32">
+        <div className="w-auto py-8 pt-24 lg:pt-32 font-semibold text-2xl px-8">
           Hasil nilai ujian tahun ajaran 2022/2023
         </div>
         <div className="w-full lg:w-[300px] h-auto p-4">
@@ -59,7 +59,7 @@ export default function Home() {
                 id="search"
                 placeholder="Cari nama peserta ujian atau NISN"
               />
-              <div className="w-14 h-12 border-2 border-[rgba(0,0,0,0.1)] border-l-0 rounded-lg rounded-l-none flex items-center justify-center text-[rgba(0,0,0,0.25)] hover:bg-[rgba(0,0,0,0.075)]">
+              <div className="w-14 h-12 border-2 border-[rgba(0,0,0,0.1)] border-l-0 rounded-lg rounded-l-none flex items-center justify-center text-[rgba(0,0,0,0.25)] hover:bg-[rgba(0,0,0,0.025)]">
                 <i className="fa-solid fa-search"></i>
               </div>
             </div>
