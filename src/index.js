@@ -13,6 +13,7 @@ root.render(
       <Route path="/*" element={<App />} />
       <Route path="/dashboard/*" element={<Dashboard />} >
         <Route path="profile" element={<Dashboard/>}/>
+        <Route path="student-data" element={<Dashboard/>}/>
       </Route>
     </Routes>
   </BrowserRouter>

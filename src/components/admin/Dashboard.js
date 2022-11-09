@@ -1,6 +1,7 @@
 import { Link, Route, Routes } from "react-router-dom";
 import Home from "./Home";
 import Profile from "./Profile";
+import StudentData from "./StudentData";
 
 export default function Dashboard() {
   return (
@@ -105,6 +106,7 @@ export default function Dashboard() {
           <Routes>
             <Route index element={<Home />} />
             <Route path="profile" element={<Profile />} />
+            <Route path="student-data" element={<StudentData />} />
           </Routes>
         </div>
       </div>
