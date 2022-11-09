@@ -6,6 +6,7 @@ import Home from "./Home";
 import MajorList from "./MajorList";
 import Profile from "./Profile";
 import StudentData from "./StudentData";
+import TeacherAccount from "./TeacherAccount";
 
 export default function Dashboard() {
   const [DMSMState, setDMSMState] = useState(false);
@@ -88,6 +89,14 @@ export default function Dashboard() {
                       </div>
                     </div>
                   </Link>
+                  <Link to={"/dashboard/teacher-account"}>
+                    <div className="w-full h-12 rounded-lg flex items-center hover:bg-[rgba(0,0,0,0.025)]">
+                      <div className="w-12 h-12 flex items-center justify-center"></div>
+                      <div className="w-fit h-auto text-sm font-medium">
+                        Akun Guru
+                      </div>
+                    </div>
+                  </Link>
                 </div>
               ) : (
                 ""
@@ -127,6 +136,7 @@ export default function Dashboard() {
             <Route path="student-data" element={<StudentData />} />
             <Route path="class-list" element={<ClassList />} />
             <Route path="major-list" element={<MajorList />} />
+            <Route path="teacher-account" element={<TeacherAccount />} />
             <Route path="about" element={<About />} />
           </Routes>
         </div>
