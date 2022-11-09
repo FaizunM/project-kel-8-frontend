@@ -1,5 +1,6 @@
-import { Route, Routes } from "react-router-dom";
+import { Link, Route, Routes } from "react-router-dom";
 import Home from "./Home";
+import Profile from "./Profile";
 
 export default function Dashboard() {
   return (
@@ -12,30 +13,36 @@ export default function Dashboard() {
             </div>
           </div>
           <div className="w-full h-auto p-4">
-            <div className="w-full h-12 rounded-lg flex items-center hover:bg-[rgba(0,0,0,0.025)]">
-              <div className="w-12 h-12 flex items-center justify-center">
-                <i className="fa-solid fa-gauge"></i>
+            <Link to={"/dashboard"}>
+              <div className="w-full h-12 rounded-lg flex items-center hover:bg-[rgba(0,0,0,0.025)]">
+                <div className="w-12 h-12 flex items-center justify-center">
+                  <i className="fa-solid fa-gauge"></i>
+                </div>
+                <div className="w-fit h-auto text-sm font-medium">
+                  Dashboard
+                </div>
               </div>
-              <div className="w-fit h-auto text-sm font-medium">
-                Dashboard
+            </Link>
+            <Link to={"/dashboard/profile"}>
+              <div className="w-full h-12 rounded-lg flex items-center hover:bg-[rgba(0,0,0,0.025)]">
+                <div className="w-12 h-12 flex items-center justify-center">
+                  <i className="fa-regular fa-user-circle"></i>
+                </div>
+                <div className="w-fit h-auto text-sm font-medium">
+                  Profil Saya
+                </div>
               </div>
-            </div>
-            <div className="w-full h-12 rounded-lg flex items-center hover:bg-[rgba(0,0,0,0.025)]">
-              <div className="w-12 h-12 flex items-center justify-center">
-                <i className="fa-regular fa-user-circle"></i>
+            </Link>
+            <Link to={"/dashboard/student-data"}>
+              <div className="w-full h-12 rounded-lg flex items-center hover:bg-[rgba(0,0,0,0.025)]">
+                <div className="w-12 h-12 flex items-center justify-center">
+                  <i class="fa-solid fa-users"></i>
+                </div>
+                <div className="w-fit h-auto text-sm font-medium">
+                  Data Diri Siswa
+                </div>
               </div>
-              <div className="w-fit h-auto text-sm font-medium">
-                Profile Saya
-              </div>
-            </div>
-            <div className="w-full h-12 rounded-lg flex items-center hover:bg-[rgba(0,0,0,0.025)]">
-              <div className="w-12 h-12 flex items-center justify-center">
-                <i class="fa-solid fa-users"></i>
-              </div>
-              <div className="w-fit h-auto text-sm font-medium">
-                Data Diri Siswa
-              </div>
-            </div>
+            </Link>
             <div className="flex flex-col">
               <div className="w-full h-12 rounded-lg flex items-center hover:bg-[rgba(0,0,0,0.025)]">
                 <div className="w-12 h-12 flex items-center justify-center">
@@ -49,26 +56,32 @@ export default function Dashboard() {
                 </div>
               </div>
               <div className="hidden flex-col">
-                <div className="w-full h-12 rounded-lg flex items-center hover:bg-[rgba(0,0,0,0.025)]">
-                  <div className="w-12 h-12 flex items-center justify-center"></div>
-                  <div className="w-fit h-auto text-sm font-medium">
-                    Daftar Kelas
+                <Link to={"/dashboard/class-list"}>
+                  <div className="w-full h-12 rounded-lg flex items-center hover:bg-[rgba(0,0,0,0.025)]">
+                    <div className="w-12 h-12 flex items-center justify-center"></div>
+                    <div className="w-fit h-auto text-sm font-medium">
+                      Daftar Kelas
+                    </div>
                   </div>
-                </div>
-                <div className="w-full h-12 rounded-lg flex items-center hover:bg-[rgba(0,0,0,0.025)]">
-                  <div className="w-12 h-12 flex items-center justify-center"></div>
-                  <div className="w-fit h-auto text-sm font-medium">
-                    Daftar Sekolah
+                </Link>
+                <Link to={"/dashboard/class-list"}>
+                  <div className="w-full h-12 rounded-lg flex items-center hover:bg-[rgba(0,0,0,0.025)]">
+                    <div className="w-12 h-12 flex items-center justify-center"></div>
+                    <div className="w-fit h-auto text-sm font-medium">
+                      Daftar Jurusan
+                    </div>
                   </div>
-                </div>
+                </Link>
               </div>
             </div>
-            <div className="w-full h-12 rounded-lg flex items-center hover:bg-[rgba(0,0,0,0.025)]">
-              <div className="w-12 h-12 flex items-center justify-center">
-                <i className="fa-solid fa-circle-info"></i>
+            <Link to={"/dashboard/about"}>
+              <div className="w-full h-12 rounded-lg flex items-center hover:bg-[rgba(0,0,0,0.025)]">
+                <div className="w-12 h-12 flex items-center justify-center">
+                  <i className="fa-solid fa-circle-info"></i>
+                </div>
+                <div className="w-fit h-auto text-sm font-medium">About</div>
               </div>
-              <div className="w-fit h-auto text-sm font-medium">About</div>
-            </div>
+            </Link>
           </div>
           <div className="w-full h-auto flex p-4 mt-auto">
             <div className="w-auto h-auto flex items-center gap-3">
@@ -91,6 +104,7 @@ export default function Dashboard() {
         <div className="w-full h-auto">
           <Routes>
             <Route index element={<Home />} />
+            <Route path="profile" element={<Profile />} />
           </Routes>
         </div>
       </div>
