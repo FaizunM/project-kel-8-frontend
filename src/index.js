@@ -14,6 +14,9 @@ root.render(
       <Route path="/dashboard/*" element={<Dashboard />} >
         <Route path="profile" element={<Dashboard/>}/>
         <Route path="student-data" element={<Dashboard/>}/>
+        <Route path="class-list" element={<Dashboard/>}/>
+        <Route path="major-list" element={<Dashboard/>}/>
+        <Route path="about" element={<Dashboard/>}/>
       </Route>
     </Routes>
   </BrowserRouter>

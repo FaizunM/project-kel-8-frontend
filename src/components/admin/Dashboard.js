@@ -1,9 +1,23 @@
+import { useState } from "react";
 import { Link, Route, Routes } from "react-router-dom";
+import About from "./About";
+import ClassList from "./ClassList";
 import Home from "./Home";
+import MajorList from "./MajorList";
 import Profile from "./Profile";
 import StudentData from "./StudentData";
 
 export default function Dashboard() {
+  const [DMSMState, setDMSMState] = useState(false);
+
+  const DMSMAction = () => {
+    if (!DMSMState) {
+      setDMSMState(true);
+    } else {
+      setDMSMState(false);
+    }
+  };
+
   return (
     <div className="w-full h-screen">
       <div className="flex">
@@ -44,7 +58,7 @@ export default function Dashboard() {
                 </div>
               </div>
             </Link>
-            <div className="flex flex-col">
+            <div className="flex flex-col" onClick={DMSMAction}>
               <div className="w-full h-12 rounded-lg flex items-center hover:bg-[rgba(0,0,0,0.025)]">
                 <div className="w-12 h-12 flex items-center justify-center">
                   <i className="fa-solid fa-box"></i>
@@ -56,31 +70,35 @@ export default function Dashboard() {
                   <i className="fa-solid fa-chevron-down"></i>
                 </div>
               </div>
-              <div className="hidden flex-col">
-                <Link to={"/dashboard/class-list"}>
-                  <div className="w-full h-12 rounded-lg flex items-center hover:bg-[rgba(0,0,0,0.025)]">
-                    <div className="w-12 h-12 flex items-center justify-center"></div>
-                    <div className="w-fit h-auto text-sm font-medium">
-                      Daftar Kelas
+              {DMSMState ? (
+                <div className="flex flex-col">
+                  <Link to={"/dashboard/class-list"}>
+                    <div className="w-full h-12 rounded-lg flex items-center hover:bg-[rgba(0,0,0,0.025)]">
+                      <div className="w-12 h-12 flex items-center justify-center"></div>
+                      <div className="w-fit h-auto text-sm font-medium">
+                        Daftar Kelas
+                      </div>
                     </div>
-                  </div>
-                </Link>
-                <Link to={"/dashboard/class-list"}>
-                  <div className="w-full h-12 rounded-lg flex items-center hover:bg-[rgba(0,0,0,0.025)]">
-                    <div className="w-12 h-12 flex items-center justify-center"></div>
-                    <div className="w-fit h-auto text-sm font-medium">
-                      Daftar Jurusan
+                  </Link>
+                  <Link to={"/dashboard/major-list"}>
+                    <div className="w-full h-12 rounded-lg flex items-center hover:bg-[rgba(0,0,0,0.025)]">
+                      <div className="w-12 h-12 flex items-center justify-center"></div>
+                      <div className="w-fit h-auto text-sm font-medium">
+                        Daftar Jurusan
+                      </div>
                     </div>
-                  </div>
-                </Link>
-              </div>
+                  </Link>
+                </div>
+              ) : (
+                ""
+              )}
             </div>
             <Link to={"/dashboard/about"}>
               <div className="w-full h-12 rounded-lg flex items-center hover:bg-[rgba(0,0,0,0.025)]">
                 <div className="w-12 h-12 flex items-center justify-center">
                   <i className="fa-solid fa-circle-info"></i>
                 </div>
-                <div className="w-fit h-auto text-sm font-medium">About</div>
+                <div className="w-fit h-auto text-sm font-medium">Tentang</div>
               </div>
             </Link>
           </div>
@@ -107,6 +125,9 @@ export default function Dashboard() {
             <Route index element={<Home />} />
             <Route path="profile" element={<Profile />} />
             <Route path="student-data" element={<StudentData />} />
+            <Route path="class-list" element={<ClassList />} />
+            <Route path="major-list" element={<MajorList />} />
+            <Route path="about" element={<About />} />
           </Routes>
         </div>
       </div>
