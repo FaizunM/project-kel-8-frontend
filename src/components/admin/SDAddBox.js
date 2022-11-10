@@ -1,7 +1,19 @@
-export default function SDAddBox() {
+export default function SDAddBox(props) {
+  const closeBox = (event) => {
+    if (event.target.id === "box-container") {
+      props.close();
+    }
+  };
   return (
-    <div className="w-screen h-screen fixed top-0 left-0 bg-[rgba(0,0,0,0.05)] flex items-center justify-center">
-      <div className="w-[400px] h-[500px] overflow-scroll bg-white shadow-default p-8">
+    <div
+      className="w-screen h-screen fixed top-0 left-0 bg-[rgba(0,0,0,0.05)] flex items-center justify-center"
+      onClick={closeBox}
+      id="box-container"
+    >
+      <div
+        className="w-[400px] max-h-[500px] overflow-scroll bg-white shadow-default p-8"
+        id="main-box"
+      >
         <h1 className="text-xl font-semibold">Tambah Data Siswa</h1>
         <form action="" className="mt-8">
           <div className="flex mb-4">
