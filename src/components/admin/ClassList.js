@@ -1,9 +1,21 @@
+import { useState } from "react";
+import CLAddBox from "./CLAddBox";
+
 export default function ClassList() {
+  const [CLAddBoxState, setCLAddBoxState] = useState(false);
+
+  const openCLAddBox = () => {
+    setCLAddBoxState(true);
+  };
+
+  const closeCLAddBox = () => {
+    setCLAddBoxState(false);
+  };
   return (
     <div className="w-full h-screen px-16 py-16 overflow-y-scroll">
       <h1 className="text-3xl font-semibold">Daftar Kelas</h1>
       <div className="w-full h-auto mt-16">
-        <div className="w-fit h-auto p-4 py-2 bg-white border-[1px] border-[rgba(0,0,0,0.075)] rounded-lg hover:shadow-default hover:border-[rgba(0,0,0,0.0)] transition-all duration-150 ease-in-out hover:bg-blue-300 hover:text-white">
+        <div className="w-fit h-auto p-4 py-2 bg-white border-[1px] border-[rgba(0,0,0,0.075)] rounded-lg hover:shadow-default hover:border-[rgba(0,0,0,0.0)] transition-all duration-150 ease-in-out hover:bg-blue-300 hover:text-white" onClick={openCLAddBox}>
           Tambah
         </div>
         <div className="w-full h-full grid grid-cols-3 gap-3 mt-8">
@@ -25,6 +37,7 @@ export default function ClassList() {
           </div>
         </div>
       </div>
+      {CLAddBoxState ? <CLAddBox close={closeCLAddBox} /> : ""}
     </div>
   );
 }
