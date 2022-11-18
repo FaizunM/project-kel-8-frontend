@@ -28,6 +28,7 @@ export default function LoginPage() {
       .post(apiUrl + "/login", form)
       .then((res) => {
         const token = res.data.data.token;
+        localStorage.setItem("token", token);
 
         if (token) {
           axios
