@@ -6,9 +6,8 @@ import Notification from "./Notification";
 
 export default function Home() {
   const [data, setData] = useState([]);
-  const [student, setStudent] = useState([]);
+  const [classData, setClassData] = useState([]);
   const [message, setMessage] = useState(null);
-  const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [isLogged, setIsLogged] = useState(false);
   const [_, forceUpdate] = useReducer((x) => x + 1, 0);
@@ -21,23 +20,10 @@ export default function Home() {
   const getData = useCallback((topage) => {
     const to_page = topage;
     setPage(to_page);
-    setLoading(true);
     axios
       .post(apiUrl + `/student/all?per_page=20&&page=` + to_page)
       .then((res) => {
-        // setStudent(res.data.data.data);
-        axios
-          .post(apiUrl + "/course/view?student_id=1")
-          .then((resp) => {
-            console.log(resp.data);
-          })
-          .catch((err) => {
-            console.log(err);
-            setMessage(err.response.data.message);
-          });
         setData(res.data.data);
-
-        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
@@ -114,14 +100,8 @@ export default function Home() {
             <div className="min-w-[72px] text-center h-auto py-4">Poin</div>
           </div>
           <div className="w-full h-auto text-sm">
-            {loading ? (
-              <div className="w-full h-[250px] flex items-center justify-center">
-                <div className="w-16 h-16 flex items-center justify-center animate-spin rounded-full text-3xl">
-                  <i className="fa-solid fa-circle-notch"></i>
-                </div>
-              </div>
-            ) : (
-              student.map((d, index) => (
+            {data.data ? (
+              data.data.map((d, index) => (
                 <div
                   className="w-fit h-auto py-4 flex items-center font-medium text-[rgba(0,0,0,0.5)] px-4 hover:text-[rgba(0,0,0,0.75)] hover:shadow-default transition-all duration-150 ease-in-out"
                   key={d.id}
@@ -129,13 +109,15 @@ export default function Home() {
                   <div className="min-w-[96px] text-center h-auto">
                     {index + 1 + (page * data.per_page - data.per_page)}
                   </div>
-                  <div className="min-w-[48px] min-h-[48px] mx-4 overflow-hidden rounded-full">
+                  <div className="w-[48px] h-[48px] mx-4 overflow-hidden rounded-full">
                     <img
-                      className="w-[48px] h-[48px]"
-                      src={d.image}
-                      width="512"
-                      height="512"
+                      src={
+                        d.image !== null
+                          ? d.image
+                          : "https://onwaleed.sirv.com/Image/png-user-icon-customer-icon-1600.png"
+                      }
                       alt=""
+                      className="w-full h-full"
                     />
                   </div>
                   <div className="min-w-[164px] lg:max-w-[164px] text-center h-auto">
@@ -144,9 +126,7 @@ export default function Home() {
                   <div className="min-w-[96px] text-center h-auto">
                     {d.nisn}
                   </div>
-                  <div className="min-w-[96px] text-center h-auto">
-                    {d.class}
-                  </div>
+                  <div className="min-w-[96px] text-center h-auto"></div>
                   <div className="min-w-[128px] text-center h-auto">
                     {d.status === "Lulus" ? (
                       <div className="text-green-500">{d.status}</div>
@@ -159,12 +139,24 @@ export default function Home() {
                   </div>
                 </div>
               ))
+            ) : (
+              <div className="w-full h-[250px] flex items-center justify-center">
+                <div className="w-16 h-16 flex items-center justify-center animate-spin rounded-full text-3xl">
+                  <i className="fa-solid fa-circle-notch"></i>
+                </div>
+              </div>
             )}
           </div>
           <div className="w-full h-auto flex justify-center mt-8">
             <div className="w-auto h-auto flex" onClick={prevPage}>
               <div className="w-8 h-8 border-2 border-[rgba(0,0,0,0.075)] rounded-lg flex justify-center items-center text-[rgba(0,0,0,0.5)] rounded-r-none border-r-0  hover:bg-[rgba(0,0,0,0.05)] transition-all duration-150 ease-in-out">
                 <i className="fa-solid fa-chevron-left"></i>
+              </div>
+            </div>
+
+            <div className="w-auto h-auto flex" onClick={prevPage}>
+              <div className="w-8 h-8 border-2 border-[rgba(0,0,0,0.075)] flex justify-center items-center text-[rgba(0,0,0,0.5)] hover:bg-[rgba(0,0,0,0.05)] transition-all duration-150 ease-in-out">
+                {page}
               </div>
             </div>
 

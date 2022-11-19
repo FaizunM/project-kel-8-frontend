@@ -1,4 +1,6 @@
 import axios from "axios";
+import { useCallback } from "react";
+import { useEffect } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Notification from "../Notification";
@@ -63,6 +65,42 @@ export default function LoginPage() {
         setLoading(false);
       });
   };
+
+  const checkLogged = useCallback(() => {
+    const token = localStorage.getItem("token");
+
+    if (token !== null) {
+      axios
+        .get(apiUrl + "/account", {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
+        })
+        .then((reslog) => {
+          setLoading(false);
+
+          const user = reslog.data;
+
+          if (user.role === "admin") {
+            navigate("/dashboard");
+          }
+          if (user.role === "student") {
+            navigate("/");
+          }
+          if (user.role === "teacher") {
+            navigate("/dashboard");
+          }
+        })
+        .catch((err) => {
+          setMessage(err.response.data.message);
+          setLoading(false);
+        });
+    }
+  }, []);
+
+  useEffect(() => {
+    checkLogged();
+  }, [checkLogged]);
 
   const changeMessage = (text) => {
     setMessage(text);
