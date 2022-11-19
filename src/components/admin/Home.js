@@ -8,7 +8,7 @@ import {
   CategoryScale,
 } from "chart.js";
 
-ChartJs.register(LineElement, PointElement, LinearScale, Title, CategoryScale, );
+ChartJs.register(LineElement, PointElement, LinearScale, Title, CategoryScale);
 
 export default function Home() {
   return (
